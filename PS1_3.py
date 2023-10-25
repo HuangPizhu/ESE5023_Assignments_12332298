@@ -1,17 +1,14 @@
 def Pascal_triangle(k):
-    if k <= 0: 
-         return "parameter must be an integer more than zero"  
-    elif k == 1:  
-        return [[1]]
-    else:  
-        triangle = [[1]]
-        for i in range(2, k + 1):  
-            row = [1]  
-            for j in range(1, i - 1):  
-                row.append(triangle[i-2][j-1] + triangle[i-2][j])  
-            row.append(1)  
-            triangle.append(row)  
-    return triangle[k-1]
+    if k == 1:
+        return [1]
+    else:
+        row = Pascal_triangle(k-1)
+        row.append(0)
+        new_row = []
+        for i in range(len(row)-1):
+            new_row.append(row[i]+row[i+1])
+        new_row.insert(0,1)
+    return new_row
 print(Pascal_triangle(100))
 print(Pascal_triangle(200))
 '''
